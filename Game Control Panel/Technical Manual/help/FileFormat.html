@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>File Format Specifications </title>
+</head>
+<body>
+
+<h1>File Format Specifications </h1>
+
+<h2>Keywords</h2>
+<p>The Game Server will scan the GameScores file for keywords to send messages to the laser guns. The keywords will always be written to the file in English to ensure compatibility regardless of the user interface language. Valid keywords are:</p>
+<dl>
+<p>
+<dt>&quot;END GAME&quot;</dt>
+<dd>Tells the laser guns to end the game and stop shooting or receiving hits.</dd>
+</p>
+<p><dt>&quot;RESUME GAME&quot;</dt><dd>Tells the laser guns to resume the current game in progress.</dd>
+</p>
+<p><dt>&quot;START GAME WITH LIVES: &quot;</dt><dd>Tells the laser guns to start a new game with the number of lives indicated by the digit immediately following the keyword</dd>
+</p>
+</dl>
+
+<p>The Game Server is only concerned if a keyword appears on the bottom line of the GameScores file. The GameScores file is designed to be a human readable log of all game activities, so keyword will remain in the file after their messages have been handled by the Game Server. The Game Server has 100 milliseconds to respond to the keyword message before it could potentially be replaced by another keyword.</p>
+<h2>Hit Information</h2>
+<p>The Game Control Panel will scan the text file for hit information. The hit information is defined as one occurrence of PlayerX followed by one occurrence of PlayerY. In this example X is a digit representing the number of the player or team who shot the laser blaster and Y is the digit representing the number of the player or team who was shot. There can be text before the first occurrence of PlayerX, between PlayerX and PlayerY, and after PlayerY. Formatting of text before, after, and between the PlayerX and PlayerY is not defined, but it is recommended to format the entry in a human recognizable string. The recommended format is a timestamp followed by a tab and the text &quot;PlayerX shot PlayerY&quot;. There can only be one hit recorded per line. The Game Control Panel will recognize the hits sequentially starting at the beginning of the file and ending at the final line of the file.</p>
+<p>The Game Control Panel will recognize and ignore erroneous data in the file. For example:</p>
+<ul>
+<li>A player or team can not shoot another player if they are dead.</li>
+<li>A player or team can to be shot if they are dead.</li><li>A player or team can not shoot themselves.</li><li>A player or team can not have negative points.</li><li>A player or team can not have negative lives.</li>
+</ul>
+<p>If a hit is recorded the shooting player will earn 100 points and the player who was shot will loose 25 points. A player or team can not have negative points, and therefore will only loose 25 points when they are shot if they have 25 points or more to loose. Every time a player is shot they will loose one life.</p>
+
+<p>The application is designed for global support and is availible in <a href="./Languages.html">several languages</a>. The Game Scores file is shown in the user's selected language. The program will scan the file for the text identifying the player or team in any supported language. There are several variations of each string of text to recognize information written to the file with or without capitalization and with or without a space. The program will recognize the text in the forms shown below as long as X is a digit:</p>
+<ul>
+<li>PlayerX</li>
+<li>playerX</li>
+<li>Player X</li>
+<li>player X</li>
+<li>TeamX</li>
+<li>teamX</li>
+<li>Team X</li>
+<li>team X</li>
+<li><img src="./XuanShou.png"> X</li>
+<li><img src="./XuanShou.png">X</li>
+<li><img src="./Dui.png"> X</li>
+<li><img src="./Dui.png">X</li>
+<li>Jugador X</li>
+<li>JugadorX</li>
+<li>jugador X</li>
+<li>jugadorX</li>
+<li>Equipo X</li>
+<li>EquipoX</li>
+<li>equipo X</li>
+<li>equipoX</li>
+</ul>
+<p><a href="./Versions.html">Versions 1.0-Version 1.1</a> of The Game Control Panel will only recognize the form as PlayerX. Score information can be written to the file in any of the formats shown above. As the file is being interpreted by the Game Control Panel it will replace the text with the appropriate form for the specified language and the appropriate form for a team or individual game. For example, it is possible to write the text &quot;Player1 shot Player2&quot; into the file, and if the gameplay is set for Spanish all the user will see is &quot;Jugador 1 disparo Jugador 2&quot;. If the user changes languages in the middle of the game, the program will change the text of the file to automatically convert everything into the new language.</P>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Subsystem Images Schematics/Block Diagram</title>
+</head>
+<body>
+<h1>Subsystem Images Schematics/Block Diagram</h1>
+<h2>Block Diagram</h2>
+<a href="./BlockDiagram.jpg"><center><img src="./BlockDiagram.jpg" width=100% style="max-width:857px;">
+<br>
+<i>Block Diagram of System Communications</i></center></a>
+<p>As shown above, the Game Control Panel does not interface directly with the laser guns or the robots. All communication is conducted by other applications on the Game Server. The Game Control Panel communicates through the use of the GameScores.txt file. All score information is appended to the GameScores.txt file and the Game Server will scan this file for messages to send to the guns. The keyword will remain on the bottom line of the application for a minimum of 100 milliseconds to give the Game Server time to read the value before it is potentially replaced by a different value.</p>
+<h2>State Diagram</h2>
+<a href="./StateDiagram.jpg"><center><img src="./StateDiagram.jpg" width=100% style="max-width:687px;">
+<br>
+<i>Game Control Panel State Diagram</i></center></a>
+<p>The Game Control Panel has four distinct states. The select game settings page will allow the attraction host to configure the game’s number of lives, length, and number of teams. The timer running state will automatically refresh the score data and count down the time in the game. The timer running state will continue until the user presses the emergency stop button, the timer completes, or there is only one player remaining in the game. The timer stopped state will not count down time or refresh score data. This state waits for the attraction host to reset or resume the game. The game finished state will display the final score information until the user resets the game. This can also be represented by an illustrated state diagram below.</p>
+<a href="./IllustratedStateDiagram.jpg"><center><img src="./IllustratedStateDiagram.jpg" width=100% style="max-width:1251px;">
+<br>
+<i>Illustrated State Diagram</i></center></a>
+<h2>Use Case Diagram</h2>
+<a href="./UseCaseDiagram.jpg"><center><img src="./UseCaseDiagram.jpg" width=100% style="max-width:747px;">
+<br>
+<i>Use Case Diagram</i></center></a>
+<p>The Use Case Diagram above shows the actions caused by the Score File and Attraction Host. The attraction host can create settings, start the game, reset the game, E-Stop the game, and resume the game. All of these actions, except for set game settings, will update the score file. The reset game action will also perform the action of appending the scores to the end of the file and archiving the game file. The score file has the action of updating the game when additional score information is added to the file.</p>
+</body>
+</html>
